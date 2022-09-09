@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="set.h">
+    <ClInclude Include="tile.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="hand.h">

@@ -128,6 +128,7 @@ public:
 	std::string get_name()   const { return std::get<2>(*this); };
 	TYPE get_type()          const { return std::get<4>(*this); };
 	size_t get_dora_count()  const { return std::get<5>(*this).size(); };
+	STATE get_state()        const { return std::get<6>(*this); };
 	//int  get_position()      const { return std::get<0>(*this); };
 	void  set_position(int pos)    { std::get<7>(*this) = pos; };
 
@@ -175,7 +176,7 @@ Tile Tile::get_tile_by_index(int index) {
 			tile.set_as_terminal();
 		else if (num == 10) {
 			std::get<1>(tile) = 5;
-			std::get<0>(tile) = get_index_by_suit_num(std::make_pair(suit_num.first, num));
+			std::get<0>(tile) = get_index_by_suit_num(std::make_pair(suit_num.first, 4));
 			tile.set_as_dora(DORA::RED_FIVE);
 		}
 	}
