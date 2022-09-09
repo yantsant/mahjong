@@ -101,8 +101,13 @@ enum class DORA{
 	DORA
 };
 
-//                 <idx, num in suit,   name,        suit, type, dora array>
-typedef  std::tuple<int,         int,   std::string, SUIT, TYPE, std::vector<DORA>> TUPLE_TILE;
+enum class STATE {
+	OPEN,
+	CLOSE
+};
+
+//                 <idx, num in suit,   name,        suit, type, dora array,        state, pos>
+typedef  std::tuple<int,         int,   std::string, SUIT, TYPE, std::vector<DORA>, STATE, int> TUPLE_TILE;
 
 class Tile : private TUPLE_TILE
 {
@@ -114,6 +119,8 @@ public:
 		std::get<3>(*this) = suit;
 		std::get<4>(*this) = type;
 		//std::get<5>(*this).push_back( dora);
+		std::get<6>(*this) = STATE::CLOSE;
+		std::get<7>(*this) = -1;
 	}
 	int  get_index()         const { return std::get<0>(*this); };
 	int  get_num_in_suit()   const { return std::get<1>(*this); };
@@ -121,6 +128,8 @@ public:
 	std::string get_name()   const { return std::get<2>(*this); };
 	TYPE get_type()          const { return std::get<4>(*this); };
 	size_t get_dora_count()  const { return std::get<5>(*this).size(); };
+	//int  get_position()      const { return std::get<0>(*this); };
+	void  set_position(int pos)    { std::get<7>(*this) = pos; };
 
 	void set_as_terminal()           { std::get<4>(*this) = TYPE::TERMINAL;	}
 	void set_as_honor()              { std::get<4>(*this) = TYPE::HONOR;	}
@@ -132,6 +141,13 @@ public:
 				return true;
 		return false;
 	}
+
+	friend static bool operator > (const Tile& lhs, const Tile& rhs) {
+		return lhs.get_index() - rhs.get_index();
+	}
+	friend static bool operator < (const Tile& lhs, const Tile& rhs) {
+		return rhs.get_index() - lhs.get_index();
+	}
 	static Tile get_tile_by_index  (int index);
 	static int  get_next_tile_index(int index);
 	static bool compareTiles(const Tile& lhs, const Tile& rhs);
@@ -139,7 +155,7 @@ public:
 private:
 	Tile() { 
 		std::vector<DORA> dora;
-		static_cast<TUPLE_TILE>(*this) = {37, 0, tile_captions[37], SUIT::UNDEF, TYPE::UNDEF,  dora }; };
+		static_cast<TUPLE_TILE>(*this) = {37, 0, tile_captions[37], SUIT::UNDEF, TYPE::UNDEF,  dora, STATE::CLOSE, -1 }; };
 };
 
 
@@ -159,6 +175,7 @@ Tile Tile::get_tile_by_index(int index) {
 			tile.set_as_terminal();
 		else if (num == 10) {
 			std::get<1>(tile) = 5;
+			std::get<0>(tile) = get_index_by_suit_num(std::make_pair(suit_num.first, num));
 			tile.set_as_dora(DORA::RED_FIVE);
 		}
 	}
