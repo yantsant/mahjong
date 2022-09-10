@@ -3,9 +3,24 @@
 int main() {
 	std::vector<int> tile;
 	std::vector<int> dora_pointer;
-	for (int i = 0; i < 14; i++)	{
-		tile.push_back(rand()%37);
-	}
+	//for (int i = 0; i < 14; i++)	{
+	//	tile.push_back(rand()%37);
+	//}
+	tile.push_back(0);
+	tile.push_back(0);
+	tile.push_back(0);
+	tile.push_back(1);
+	tile.push_back(2);
+	tile.push_back(0);
+	tile.push_back(1);
+	tile.push_back(2);
+	tile.push_back(1);
+	tile.push_back(2);
+	tile.push_back(3);
+	tile.push_back(1);
+	tile.push_back(2);
+	tile.push_back(3);
+
 	for (int i = 0; i < 3; i++) {
 		dora_pointer.push_back(13);
 	}
