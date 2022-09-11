@@ -57,25 +57,30 @@ public:
 			if (pick_tiles(par, hand)) {
 				poss_sets.push_back(par);
 				suits.clear();
-				divide_hand_to_suits(hand);
+				divide_hand_to_suits(hand); 
 				std::vector <SET> suit_sets;
 				for (auto suit : suits) {
-					divide_suit_to_sets(suit, poss_sets);
+					divide_suit_to_sets(suit, poss_sets); // BUG : picked from suit but from hand!
 				}
 			}
 			poss_sets.clear();
 		}
-		if (poss_hands.size() == 0) std::cout << "Invalid Hand! \n";
-		std::cout << *this << "\n";
 		poss_hands.erase(std::unique(poss_hands.begin(), poss_hands.end()), poss_hands.end());
-		for (const auto& hand : poss_hands) {
-			std::cout << hand << "\n";
-		}
+		
 		return;
 	};
 
 	~Hand() {
 	};
+
+	bool isValid() {
+		if (poss_hands.size() == 0) return false;
+		std::cout << *this << "\n";
+		for (const auto& hand : poss_hands) {
+			std::cout << hand << "\n";
+		}
+		return false;
+	}
 
 	friend std::ostream& operator << (std::ostream& os, const Hand& hand) {
 		for (const auto& tile : hand) {
@@ -265,8 +270,6 @@ bool Hand::divide_suit_to_sets(std::vector<Tile> suit, std::vector<SET>& poss_se
 				for (const auto& chi2 : chis) {
 					for (const auto& chi3 : chis) {
 						for (const auto& chi4 : chis) {
-							suit = suit_save;
-							poss_sets = poss_sets_save;
 							if (pick_tiles(chi1, suit) && pick_tiles(chi2, suit) && pick_tiles(chi3, suit) && pick_tiles(chi4, suit)) {
 								poss_sets.push_back(chi1);
 								poss_sets.push_back(chi2);
@@ -274,6 +277,8 @@ bool Hand::divide_suit_to_sets(std::vector<Tile> suit, std::vector<SET>& poss_se
 								poss_sets.push_back(chi4);
 								divide_suit_to_sets(suit, poss_sets);
 							}
+							suit = suit_save;
+							poss_sets = poss_sets_save;
 						}
 					}
 				}

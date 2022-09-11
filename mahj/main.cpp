@@ -25,10 +25,21 @@ int main() {
 	//tile.push_back(3);
 	tile.push_back(35);
 	tile.push_back(35);
-
+	tile.resize(14);
 	for (int i = 0; i < 3; i++) {
 		dora_pointer.push_back(13);
 	}
-	Hand hand(tile, dora_pointer, 3);
+	size_t valid = 0;
+	for (size_t j = 0; j < 1000000; j++)
+	{
+		for (int i = 0; i < 14; i++) {
+			tile[i] = rand() % 37;
+		}
+		Hand hand(tile, dora_pointer, 3);
+		if (hand.isValid()) {
+			valid++;
+			std::cout << double(valid*100) / j <<"% ";
+		}
+	}
 	return 0;
 }
