@@ -12,7 +12,26 @@ enum class SUIT{
 	DRAGON = 5,
 };
 
-
+std::ostream& operator << (std::ostream& os, const SUIT& suit) {
+	switch (suit)
+	{
+	case SUIT::UNDEF:
+		break;
+	case SUIT::PIN:  os << "PIN";
+		break;
+	case SUIT::SOU:  os << "SOU";
+		break;
+	case SUIT::MAN:  os << "MAN";
+		break;
+	case SUIT::WIND:  os << "WIND";
+		break;
+	case SUIT::DRAGON:  os << "DRAG";
+		break;
+	default:
+		break;
+	}
+	return os;
+}
 
 int get_suit_range(SUIT suit) {
 	switch (suit)	{
@@ -118,7 +137,6 @@ public:
 		std::get<2>(*this) = name;
 		std::get<3>(*this) = suit;
 		std::get<4>(*this) = type;
-		//std::get<5>(*this).push_back( dora);
 		std::get<6>(*this) = STATE::CLOSE;
 		std::get<7>(*this) = -1;
 	}
@@ -136,6 +154,11 @@ public:
 	void set_as_honor()              { std::get<4>(*this) = TYPE::HONOR;	}
 	void set_as_dora(DORA dora_type) { std::get<5>(*this).push_back(dora_type); };// std::get<5>(*this) = dora_type;
 
+	friend std::ostream& operator << (std::ostream& os, const Tile& tile) {
+		os << std::get<2>(tile);
+		return os;
+	}
+
 	friend static bool operator == (const Tile& lhs, const Tile& rhs) {
 		if(lhs.get_suit() == rhs.get_suit())
 			if(lhs.get_num_in_suit() == rhs.get_num_in_suit())
@@ -144,14 +167,15 @@ public:
 	}
 
 	friend static bool operator > (const Tile& lhs, const Tile& rhs) {
-		return lhs.get_index() - rhs.get_index();
+		return lhs.get_index() > rhs.get_index();
 	}
 	friend static bool operator < (const Tile& lhs, const Tile& rhs) {
-		return rhs.get_index() - lhs.get_index();
+		return rhs.get_index() > lhs.get_index();
 	}
 	static Tile get_tile_by_index  (int index);
 	static int  get_next_tile_index(int index);
 	static bool compareTiles(const Tile& lhs, const Tile& rhs);
+
 	~Tile() {};
 private:
 	Tile() { 
