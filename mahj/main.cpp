@@ -1,4 +1,4 @@
-#include "hand.h"
+#include "cost.h"
 #include <random>
 std::vector<int> valid_hand_kan() {
 	return std::vector<int> {0,0,0,0, 1,1,1,1, 2,2,2, 2,3,4, 35,35};

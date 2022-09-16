@@ -26,5 +26,8 @@
     <ClInclude Include="hand.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="cost.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

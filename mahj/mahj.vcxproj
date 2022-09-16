@@ -144,6 +144,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cost.h" />
     <ClInclude Include="hand.h" />
     <ClInclude Include="tile.h" />
   </ItemGroup>

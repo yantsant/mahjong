@@ -13,8 +13,6 @@ enum class SET_TYPE{
 	PAIR
 };
 
-//typedef std::tuple<std::vector<Tile>, SET_TYPE, STATE> SET;
-
 struct SET : private std::tuple<std::vector<Tile>, SET_TYPE, STATE> {
 	SET(std::vector<Tile>, SET_TYPE, STATE) : std::tuple<std::vector<Tile>, SET_TYPE, STATE>(){
 
@@ -147,7 +145,6 @@ private:
 	std::vector<std::tuple<Tile, int, int>> calc_count(std::vector<Tile> tiles);
 	void divide_hand_to_suits(std::vector<Tile> tiles);
 	bool divide_suit_to_sets(std::vector<Tile> suit, std::vector<SET>& sets);
-	bool _divide_suit_to_sets(std::vector<Tile> suit);
 };
 
 void HandSeeker::find_possible_hands() {
