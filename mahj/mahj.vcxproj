@@ -146,7 +146,15 @@
   <ItemGroup>
     <ClInclude Include="cost.h" />
     <ClInclude Include="hand.h" />
+    <ClInclude Include="preproc.h" />
     <ClInclude Include="tile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\data\data1.txt" />
+    <Text Include="..\data\data2.txt" />
+    <Text Include="..\data\data3.txt" />
+    <Text Include="..\data\data4.txt" />
+    <Text Include="..\data\data5.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

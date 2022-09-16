@@ -1,4 +1,5 @@
 #include "cost.h"
+#include "preproc.h"
 #include <random>
 std::vector<int> valid_hand_kan() {
 	return std::vector<int> {0,0,0,0, 1,1,1,1, 2,2,2, 2,3,4, 35,35};
@@ -14,6 +15,8 @@ std::vector<int> ryanpeiko_hand() {
 	return std::vector<int> {0,0, 0,0,1,1,2,2, 1,1,2,2,3,3};
 }
 int main() {
+	PrepareData data;
+	//data.readDataFile("data2.txt");;
 	std::vector<int> tile = ryanpeiko_hand();
 	std::vector<int> dora_pointer;
 

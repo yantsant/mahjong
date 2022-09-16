@@ -131,6 +131,9 @@ typedef  std::tuple<int,         int,   std::string, SUIT, TYPE, std::vector<DOR
 class Tile : private TUPLE_TILE
 {
 public:
+	Tile(const Tile&) {
+
+	};
 	Tile(int idx, int num_in_suit, std::string name, SUIT suit, TYPE type) {
 		std::get<0>(*this) = idx;
 		std::get<1>(*this) = num_in_suit;
@@ -150,6 +153,7 @@ public:
 	//int  get_position()      const { return std::get<0>(*this); };
 	void  set_position(int pos)    { std::get<7>(*this) = pos; };
 
+	void set_state(STATE state)      { std::get<6>(*this) = state; };
 	void set_as_terminal()           { std::get<4>(*this) = TYPE::TERMINAL;	}
 	void set_as_honor()              { std::get<4>(*this) = TYPE::HONOR;	}
 	void set_as_dora(DORA dora_type) { std::get<5>(*this).push_back(dora_type); };// std::get<5>(*this) = dora_type;
@@ -177,10 +181,11 @@ public:
 	static bool compareTiles(const Tile& lhs, const Tile& rhs);
 
 	~Tile() {};
-private:
-	Tile() { 
+	Tile() {
 		std::vector<DORA> dora;
-		static_cast<TUPLE_TILE>(*this) = {37, 0, tile_captions[37], SUIT::UNDEF, TYPE::UNDEF,  dora, STATE::CLOSE, -1 }; };
+		static_cast<TUPLE_TILE>(*this) = { 37, 0, tile_captions[37], SUIT::UNDEF, TYPE::UNDEF,  dora, STATE::CLOSE, -1 };
+	};
+private:
 };
 
 

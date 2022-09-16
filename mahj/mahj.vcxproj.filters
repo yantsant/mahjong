@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="data">
+      <UniqueIdentifier>{82a53590-c28e-4560-b497-a36565788023}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -29,5 +32,25 @@
     <ClInclude Include="cost.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="preproc.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\data\data5.txt">
+      <Filter>data</Filter>
+    </Text>
+    <Text Include="..\data\data1.txt">
+      <Filter>data</Filter>
+    </Text>
+    <Text Include="..\data\data2.txt">
+      <Filter>data</Filter>
+    </Text>
+    <Text Include="..\data\data3.txt">
+      <Filter>data</Filter>
+    </Text>
+    <Text Include="..\data\data4.txt">
+      <Filter>data</Filter>
+    </Text>
   </ItemGroup>
 </Project>
